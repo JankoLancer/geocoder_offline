@@ -1,6 +1,6 @@
 name: geocoder_offline
 description: Package for super-fast offline reverse geocoding.
-version: 0.1.1
+version: 0.1.2
 homepage: https://github.com/JankoLancer/geocoder_offline
 
 environment:
