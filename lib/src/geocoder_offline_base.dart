@@ -92,6 +92,10 @@ class GeocodeData {
     return deg * (pi / 180);
   }
 
+  double _rad2deg(rad) {
+    return rad * (180 / pi);
+  }
+
   String _calculateBearing(double lat1, double lon1, double lat2, double lon2) {
     if (lat1 == null || lon1 == null || lat2 == null || lon2 == null) {
       return null;
@@ -103,7 +107,7 @@ class GeocodeData {
     var y = sin(longDiff) * cos(latitude2);
     var x = cos(latitude1) * sin(latitude2) - sin(latitude1) * cos(latitude2) * cos(longDiff);
 
-    var degrees = ((_deg2rad(atan2(y, x)) + 360) % 360) - 11.25;
+    var degrees = ((_rad2deg(atan2(y, x)) + 360) % 360) - 11.25;
 
     var index = (degrees ~/ DIRECTION_RANGE);
 
@@ -118,7 +122,7 @@ class GeocodeData {
     nearest.forEach((x) {
       var location = LocationData.fromJson(x[0]);
       double distance = x[1];
-      var bearing = _calculateBearing(latitute, longitude, location.latitude, location.longitude);
+      var bearing = _calculateBearing(location.latitude, location.longitude, latitute, longitude);
       result.add(LocationResult(location, distance, bearing));
     });
 
