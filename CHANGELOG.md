@@ -1,3 +1,7 @@
+## 0.1.3
+
+ - Add SearchData class. SearchData contains latitude and longitude that was searched for.
+
 ## 0.1.2
 
 - Add new examples

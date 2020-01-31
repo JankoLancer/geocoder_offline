@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:csv/csv.dart';
 import 'package:geocoder_offline/geocoder_offline.dart';
+import 'package:geocoder_offline/src/SearchData.dart';
 import 'package:kdtree/kdtree.dart';
 
 import 'LocationData.dart';
@@ -118,12 +119,13 @@ class GeocodeData {
     var result = <LocationResult>[];
     var point = {'latitude': latitute, 'longitude': longitude};
     var nearest = kdTree.nearest(point, numMarkers);
+    var searchData = SearchData(latitute, longitude);
 
     nearest.forEach((x) {
       var location = LocationData.fromJson(x[0]);
       double distance = x[1];
       var bearing = _calculateBearing(location.latitude, location.longitude, latitute, longitude);
-      result.add(LocationResult(location, distance, bearing));
+      result.add(LocationResult(location, distance, bearing, searchData));
     });
 
     return result;
