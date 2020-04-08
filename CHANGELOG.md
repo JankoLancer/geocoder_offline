@@ -1,3 +1,7 @@
+## 0.1.4
+
+- Change GNIS format getter
+
 ## 0.1.3
 
  - Add SearchData class. SearchData contains latitude and longitude that was searched for.
