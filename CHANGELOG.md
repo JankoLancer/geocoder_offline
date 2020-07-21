@@ -1,4 +1,9 @@
-## 0.1.4
+# 0.1.5
+
+- Change GNIS format when location is near
+- Format files for better pub score
+
+# 0.1.4
 
 - Change GNIS format getter
 
