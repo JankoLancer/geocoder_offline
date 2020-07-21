@@ -18,7 +18,7 @@ class LocationResult {
 
   /// Get LocationResult representation in GNIS format
   String get gnisFormat {
-    if (distance == 0) {
+    if (distance < 1) {
       return '${location.featureName}, ${location.state}';
     }
     return '${distance.toInt()}mi $bearing of ${location.featureName}, ${location.state} ';
