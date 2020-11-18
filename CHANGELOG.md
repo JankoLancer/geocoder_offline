@@ -1,3 +1,9 @@
+# 0.1.6
+
+- Add public static method for calculating distance - GeocodeData.calculateDistance
+- Add unit tests
+- Add test coverage
+
 # 0.1.5
 
 - Change GNIS format when location is near
