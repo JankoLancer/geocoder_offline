@@ -111,24 +111,14 @@ class GeocodeData {
         lat2 = location2['latitude'],
         lon2 = location2['longitude'];
 
-    var R = 3958.8; // Radius of the earth in miles
-    var dLat = _deg2rad(lat2 - lat1); // deg2rad below
-    var dLon = _deg2rad(lon2 - lon1);
-    var a = sin(dLat / 2) * sin(dLat / 2) +
-        cos(_deg2rad(lat1)) *
-            cos(_deg2rad(lat2)) *
-            sin(dLon / 2) *
-            sin(dLon / 2);
-    var c = 2 * atan2(sqrt(a), sqrt(1 - a));
-    var d = R * c; // Distance in miles
-    return d;
+    return calculateDistance(lat1, lon1, lat2, lon2);
   }
 
-  double _deg2rad(deg) {
+  static double _deg2rad(deg) {
     return deg * (pi / 180);
   }
 
-  double _rad2deg(rad) {
+  static double _rad2deg(rad) {
     return rad * (180 / pi);
   }
 
@@ -166,5 +156,20 @@ class GeocodeData {
     });
 
     return result;
+  }
+
+  static double calculateDistance(
+      double latStart, double lonStart, double latEnd, double lonEnd) {
+    var R = 3958.8; // Radius of the earth in miles
+    var dLat = _deg2rad(latEnd - latStart); // deg2rad below
+    var dLon = _deg2rad(lonEnd - lonStart);
+    var a = sin(dLat / 2) * sin(dLat / 2) +
+        cos(_deg2rad(latStart)) *
+            cos(_deg2rad(latEnd)) *
+            sin(dLon / 2) *
+            sin(dLon / 2);
+    var c = 2 * atan2(sqrt(a), sqrt(1 - a));
+    var d = R * c; // Distance in miles
+    return d;
   }
 }
