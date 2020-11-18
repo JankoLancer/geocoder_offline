@@ -1,3 +1,7 @@
+# 0.1.7
+
+- Delete example files from pub
+
 # 0.1.6
 
 - Add public static method for calculating distance - GeocodeData.calculateDistance
