@@ -1,15 +1,15 @@
 class LocationData {
   /// Name of Location
-  String featureName;
+  String? featureName;
 
   /// State of Location
-  String state;
+  String? state;
 
   /// Latitude position of Location
-  double latitude;
+  double? latitude;
 
   /// Longitude position of Location
-  double longitude;
+  double? longitude;
 
   LocationData(this.featureName, this.state, this.latitude, this.longitude);
 

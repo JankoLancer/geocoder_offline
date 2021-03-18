@@ -59,11 +59,11 @@ class GeocodeData {
   /// Number of nearest result
   final int numMarkers;
 
-  KDTree _kdTree;
-  int _featureNameHeaderSN;
-  int _stateHeaderSN;
-  int _latitudeHeaderSN;
-  int _longitudeHeaderSN;
+  late KDTree _kdTree;
+  late int _featureNameHeaderSN;
+  late int _stateHeaderSN;
+  late int _latitudeHeaderSN;
+  late int _longitudeHeaderSN;
 
   GeocodeData(this.inputString, this.featureNameHeader, this.stateHeader,
       this.latitudeHeader, this.longitudeHeader,
@@ -122,7 +122,8 @@ class GeocodeData {
     return rad * (180 / pi);
   }
 
-  String _calculateBearing(double lat1, double lon1, double lat2, double lon2) {
+  String? _calculateBearing(
+      double? lat1, double? lon1, double? lat2, double? lon2) {
     if (lat1 == null || lon1 == null || lat2 == null || lon2 == null) {
       return null;
     }

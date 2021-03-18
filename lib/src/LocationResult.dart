@@ -12,7 +12,7 @@ class LocationResult {
   double distance;
 
   /// Bearing beetween search data and location data
-  String bearing;
+  String? bearing;
 
   LocationResult(this.location, this.distance, this.bearing, this.searchData);
 

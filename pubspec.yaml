@@ -1,17 +1,17 @@
 name: geocoder_offline
 description: Package for super-fast offline reverse geocoding. Search is done in the file of your choice.
-version: 0.1.7
+version: 0.2.0
 homepage: https://github.com/JankoLancer/geocoder_offline
 
 environment:
-  sdk: '>=2.0.0 <3.0.0'
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  kdtree: ^0.1.0
-  csv: ^4.0.3
+  kdtree: ^0.2.0
+  csv: ^5.0.0
 
 dev_dependencies:
-  pedantic: ^1.8.0
-  test: ^1.6.0
+  pedantic: ^1.11.0
+  test: ^1.16.5
   flutter_test:
     sdk: flutter
