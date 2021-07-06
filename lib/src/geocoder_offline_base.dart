@@ -105,7 +105,7 @@ class GeocodeData {
     _kdTree = KDTree(locations, _distance, ['latitude', 'longitude']);
   }
 
-  double _distance(location1, location2) {
+  static double _distance(location1, location2) {
     var lat1 = location1['latitude'],
         lon1 = location1['longitude'],
         lat2 = location2['latitude'],
