@@ -1,3 +1,7 @@
+# 0.2.1
+
+- Support isolate run (thanks @AbdullahChauhan - https://github.com/JankoLancer/geocoder_offline/pull/3)
+
 # 0.2.0
 
 - Support null safety
@@ -23,7 +27,7 @@
 
 ## 0.1.3
 
- - Add SearchData class. SearchData contains latitude and longitude that was searched for.
+- Add SearchData class. SearchData contains latitude and longitude that was searched for.
 
 ## 0.1.2
 
