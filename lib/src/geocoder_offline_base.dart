@@ -60,10 +60,6 @@ class GeocodeData {
   final int numMarkers;
 
   late KDTree _kdTree;
-  late int _featureNameHeaderSN;
-  late int _stateHeaderSN;
-  late int _latitudeHeaderSN;
-  late int _longitudeHeaderSN;
 
   GeocodeData(this.inputString, this.featureNameHeader, this.stateHeader,
       this.latitudeHeader, this.longitudeHeader,
@@ -77,28 +73,29 @@ class GeocodeData {
         eol: eol,
         shouldParseNumbers: false);
 
-    _featureNameHeaderSN =
+    final featureNameHeaderSN =
         rowsAsListOfValues[0].indexWhere((x) => x == featureNameHeader);
-    _stateHeaderSN = rowsAsListOfValues[0].indexWhere((x) => x == stateHeader);
-    _latitudeHeaderSN =
+    final stateHeaderSN =
+        rowsAsListOfValues[0].indexWhere((x) => x == stateHeader);
+    final latitudeHeaderSN =
         rowsAsListOfValues[0].indexWhere((x) => x == latitudeHeader);
-    _longitudeHeaderSN =
+    final longitudeHeaderSN =
         rowsAsListOfValues[0].indexWhere((x) => x == longitudeHeader);
 
-    if (_featureNameHeaderSN == -1 ||
-        _stateHeaderSN == -1 ||
-        _latitudeHeaderSN == -1 ||
-        _longitudeHeaderSN == -1) {
+    if (featureNameHeaderSN == -1 ||
+        stateHeaderSN == -1 ||
+        latitudeHeaderSN == -1 ||
+        longitudeHeaderSN == -1) {
       throw Exception('Some of header is not find in file');
     }
 
     var locations = rowsAsListOfValues
         .sublist(1)
         .map((model) => LocationData(
-            model[_featureNameHeaderSN],
-            model[_stateHeaderSN],
-            double.tryParse(model[_latitudeHeaderSN].toString()) ?? -1,
-            double.tryParse(model[_longitudeHeaderSN].toString()) ?? -1))
+            model[featureNameHeaderSN],
+            model[stateHeaderSN],
+            double.tryParse(model[latitudeHeaderSN].toString()) ?? -1,
+            double.tryParse(model[longitudeHeaderSN].toString()) ?? -1))
         .map((model) => model.toJson())
         .toList();
 
