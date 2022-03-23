@@ -9,7 +9,7 @@ import 'LocationData.dart';
 
 class GeocodeData {
   /// List of possible bearings
-  final List<String> bearings = <String>[
+  static const List<String> bearings = <String>[
     'N',
     'NNE',
     'NE',
@@ -30,7 +30,7 @@ class GeocodeData {
   ];
 
   /// Angle that every possible bearings covers
-  final double DIRECTION_RANGE = 22.5;
+  static const double DIRECTION_RANGE = 22.5;
 
   /// String that contains all possible Location
   final String inputString;
