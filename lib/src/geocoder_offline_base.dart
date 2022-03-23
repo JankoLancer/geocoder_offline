@@ -56,9 +56,6 @@ class GeocodeData {
   /// Name of column that contains Location longitude
   final String longitudeHeader;
 
-  /// Number of nearest result
-  final int numMarkers;
-
   late KDTree _kdTree;
   late int _featureNameHeaderSN;
   late int _stateHeaderSN;
@@ -67,8 +64,7 @@ class GeocodeData {
 
   GeocodeData(this.inputString, this.featureNameHeader, this.stateHeader,
       this.latitudeHeader, this.longitudeHeader,
-      {this.numMarkers = 1,
-      this.fieldDelimiter = defaultFieldDelimiter,
+      {this.fieldDelimiter = defaultFieldDelimiter,
       this.textDelimiter = defaultTextDelimiter,
       this.eol = defaultEol}) {
     var rowsAsListOfValues = const CsvToListConverter().convert(inputString,
@@ -142,7 +138,8 @@ class GeocodeData {
     return bearings[index];
   }
 
-  List<LocationResult> search(double latitute, double longitude) {
+  List<LocationResult> search(double latitute, double longitude,
+      {int numMarkers = 1}) {
     var result = <LocationResult>[];
     var point = {'latitude': latitute, 'longitude': longitude};
     var nearest = _kdTree.nearest(point, numMarkers);

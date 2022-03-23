@@ -20,10 +20,9 @@ void main() {
         'PRIMARY_LATITUDE',
         'PRIMARY_LONGITUDE',
         fieldDelimiter: ',',
-        eol: '\n',
-        numMarkers: 1);
+        eol: '\n');
 
-    var result = geocoder.search(41.881832, -87.623177);
+    var result = geocoder.search(41.881832, -87.623177, numMarkers: 1);
     expect(result.length, 1);
     expect(result.first.distance.toInt(), 1);
     expect(result.first.bearing, 'ESE');
@@ -40,10 +39,9 @@ void main() {
         'latitude',
         'longitude',
         fieldDelimiter: '\t',
-        eol: '\n',
-        numMarkers: 1);
+        eol: '\n');
 
-    var result = geocoder.search(41.881832, -87.623177);
+    var result = geocoder.search(41.881832, -87.623177, numMarkers: 1);
     expect(result.length, 1);
     expect(result.first.distance.toInt(), 0);
     expect(result.first.bearing, 'E');
