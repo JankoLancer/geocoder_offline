@@ -1,3 +1,7 @@
+# 0.2.2
+
+- Support export and import as indexed json
+
 # 0.2.1
 
 - Support isolate run (thanks @AbdullahChauhan - https://github.com/JankoLancer/geocoder_offline/pull/3)

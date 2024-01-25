@@ -5,77 +5,25 @@ import 'package:geocoder_offline/geocoder_offline.dart';
 import 'package:geocoder_offline/src/SearchData.dart';
 import 'package:kdtree/kdtree.dart';
 
-import 'LocationData.dart';
-
 class GeocodeData {
-  /// List of possible bearings
-  final List<String> bearings = <String>[
-    'N',
-    'NNE',
-    'NE',
-    'ENE',
-    'E',
-    'ESE',
-    'SE',
-    'SSE',
-    'S',
-    'SSW',
-    'SW',
-    'WSW',
-    'W',
-    'WNW',
-    'NW',
-    'NNW',
-    'N'
-  ];
-
-  /// Angle that every possible bearings covers
-  final double DIRECTION_RANGE = 22.5;
-
-  /// String that contains all possible Location
-  final String inputString;
-
-  /// Field Delimiter in inputString
-  final String fieldDelimiter;
-
-  /// Text Delimiter in inputString
-  final String textDelimiter;
-
-  /// End of line character in inputString
-  final String eol;
-
-  /// Name of column that contains Location name
-  final String featureNameHeader;
-
-  /// Name of column that contains Location state
-  final String stateHeader;
-
-  /// Name of column that contains Location latitude
-  final String latitudeHeader;
-
-  /// Name of column that contains Location longitude
-  final String longitudeHeader;
-
-  /// Number of nearest result
-  final int numMarkers;
-
-  late KDTree _kdTree;
-  late int _featureNameHeaderSN;
-  late int _stateHeaderSN;
-  late int _latitudeHeaderSN;
-  late int _longitudeHeaderSN;
-
-  GeocodeData(this.inputString, this.featureNameHeader, this.stateHeader,
-      this.latitudeHeader, this.longitudeHeader,
-      {this.numMarkers = 1,
-      this.fieldDelimiter = defaultFieldDelimiter,
-      this.textDelimiter = defaultTextDelimiter,
-      this.eol = defaultEol}) {
-    var rowsAsListOfValues = const CsvToListConverter().convert(inputString,
-        fieldDelimiter: fieldDelimiter,
-        textDelimiter: textDelimiter,
-        eol: eol,
-        shouldParseNumbers: false);
+  GeocodeData(
+    String inputString,
+    String featureNameHeader,
+    String stateHeader,
+    String latitudeHeader,
+    String longitudeHeader, {
+    this.numMarkers = 1,
+    String fieldDelimiter = defaultFieldDelimiter,
+    String textDelimiter = defaultTextDelimiter,
+    String eol = defaultEol,
+  }) {
+    var rowsAsListOfValues = const CsvToListConverter().convert(
+      inputString,
+      fieldDelimiter: fieldDelimiter,
+      textDelimiter: textDelimiter,
+      eol: eol,
+      shouldParseNumbers: false,
+    );
 
     _featureNameHeaderSN =
         rowsAsListOfValues[0].indexWhere((x) => x == featureNameHeader);
@@ -101,9 +49,51 @@ class GeocodeData {
             double.tryParse(model[_longitudeHeaderSN].toString()) ?? -1))
         .map((model) => model.toJson())
         .toList();
-
     _kdTree = KDTree(locations, _distance, ['latitude', 'longitude']);
   }
+
+  GeocodeData.fromJson(
+    Map<String, dynamic> kdTreeJson, {
+    this.numMarkers = 1,
+  }) {
+    _kdTree = KDTree.fromJson(kdTreeJson);
+    _kdTree.metric = _distance;
+  }
+
+  /// List of possible bearings
+  final List<String> bearings = <String>[
+    'N',
+    'NNE',
+    'NE',
+    'ENE',
+    'E',
+    'ESE',
+    'SE',
+    'SSE',
+    'S',
+    'SSW',
+    'SW',
+    'WSW',
+    'W',
+    'WNW',
+    'NW',
+    'NNW',
+    'N'
+  ];
+
+  /// Angle that every possible bearings covers
+  final double DIRECTION_RANGE = 22.5;
+
+  /// Number of nearest result
+  final int numMarkers;
+
+  late KDTree _kdTree;
+  late int _featureNameHeaderSN;
+  late int _stateHeaderSN;
+  late int _latitudeHeaderSN;
+  late int _longitudeHeaderSN;
+
+  Map<String, dynamic> toJson() => _kdTree.toJson();
 
   static double _distance(location1, location2) {
     var lat1 = location1['latitude'],
