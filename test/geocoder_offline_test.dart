@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:geocoder_offline/geocoder_offline.dart';
+import 'package:geocoder_offline_json/geocoder_offline.dart';
 import 'package:test/test.dart';
 
 void main() {

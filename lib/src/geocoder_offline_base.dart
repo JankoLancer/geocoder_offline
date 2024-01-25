@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:csv/csv.dart';
-import 'package:geocoder_offline/geocoder_offline.dart';
-import 'package:geocoder_offline/src/SearchData.dart';
+import 'package:geocoder_offline_json/geocoder_offline.dart';
+import 'package:geocoder_offline_json/src/SearchData.dart';
 import 'package:kdtree/kdtree.dart';
 
 class GeocodeData {
