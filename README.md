@@ -1,7 +1,8 @@
 # Offline Geocoder
 
 Dart library for super-fast offline reverse geocoding. Package use k-d tree for a search of the nearest location in a given file.
-One when Geocoder is initialized, search for location is super-fast, about 4-5 milliseconds.
+One when Geocoder is initialized, search for location is super-fast, about 4-5 milliseconds. This fork adds functionality to save the kdtree as json and load it again. This makes initializing
+the geocode data much quicker.
 
 ## Data
 
